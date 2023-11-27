@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:shoe_shop/views/shared/appstyle.dart';
-import 'package:shoe_shop/views/shared/bottom_tab_icon.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_shop/controllers/mainscreen_provider.dart';
+import 'package:shoe_shop/views/shared/custom_bottom_bar.dart';
 
 import 'package:shoe_shop/views/ui/add_page.dart';
 import 'package:shoe_shop/views/ui/cart_page.dart';
@@ -25,77 +25,16 @@ class _MainScreenState extends State<MainScreen> {
     const ProfilePage(),
   ];
 
-  int activePageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                BottomTabIcon(
-                  onTap: () {
-                    setState(() {
-                      activePageIndex = 0;
-                    });
-                  },
-                  icon: Ionicons.home,
-                ),
-                BottomTabIcon(
-                  onTap: () {
-                    setState(() {
-                      activePageIndex = 1;
-                    });
-                  },
-                  icon: Ionicons.search,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: BottomTabIcon(
-                    onTap: () {
-                      setState(() {
-                        activePageIndex = 2;
-                      });
-                    },
-                    icon: Ionicons.add,
-                    color: Colors.black,
-                  ),
-                ),
-                BottomTabIcon(
-                  onTap: () {
-                    setState(() {
-                      activePageIndex = 3;
-                    });
-                  },
-                  icon: Ionicons.cart,
-                ),
-                BottomTabIcon(
-                  onTap: () {
-                    setState(() {
-                      activePageIndex = 4;
-                    });
-                  },
-                  icon: Ionicons.person,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      body: pageList[activePageIndex],
+    return Consumer<MainScreenNotifier>(
+      builder: (context, mainScreenNotifier, child) {
+        return Scaffold(
+          backgroundColor: Colors.grey.shade300,
+          bottomNavigationBar: const CustomBottomBar(),
+          body: pageList[mainScreenNotifier.activeIndex],
+        );
+      },
     );
   }
 }
