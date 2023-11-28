@@ -4,13 +4,20 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:shoe_shop/views/shared/appstyle.dart';
 
 class ProductCard extends StatefulWidget {
-  final image;
-  final name;
-  final category;
-  final price;
+  final String image;
+  final String name;
+  final String category;
+  final String price;
+  final String id;
 
-  const ProductCard(
-      {super.key, this.image, this.name, this.category, this.price, r});
+  const ProductCard({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.category,
+    required this.price,
+    required this.id,
+  });
 
   @override
   State<ProductCard> createState() => _ProductCardState();

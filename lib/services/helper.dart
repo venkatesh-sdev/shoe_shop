@@ -45,7 +45,7 @@ class Helper {
     return sneaker;
   }
 
-  // Single Male
+  // Single FeMale
   Future<Sneakers> getFemaleSneakersById(String id) async {
     final data =
         await the_bundle.rootBundle.loadString("assets/json/women_shoes.json");

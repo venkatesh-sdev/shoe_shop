@@ -34,6 +34,7 @@ flutter:
   
   assets:
     - assets/images/
+    - assets/json/
   #   - images/a_dot_ham.jpeg
 
   
